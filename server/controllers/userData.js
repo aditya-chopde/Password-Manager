@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt")
 const UserData = require("../models/userData")
 
-async function handleCreateData(req, res){
+async function handleCreateData(req, res) {
     try {
         const { website, username, password } = req.body;
         const saltRounds = 10;
@@ -11,17 +11,22 @@ async function handleCreateData(req, res){
             username,
             password: hashedPassword,
         })
-        return res.json({success: true, message: "Data Created", data: create});
+        return res.json({ success: true, message: "Data Created", data: create });
     } catch (err) {
-        return res.json({success: false, message: "Error Creating Data", error: err.message})
+        return res.json({ success: false, message: "Error Creating Data", error: err.message })
     }
 }
 
-async function handleDeleteData(req, res) {
-    return res.json({success: true, messgage: "Deleted"})
+async function handleGetData(req, res) {
+    try {
+        const data = await UserData.find();
+        return res.json({ success: true, message: "Data Fetched Successfull", data });
+    } catch (err) {
+        return res.json({success: false, message: "Error Fetching Data", error: err.message})
+    }
 }
 
 module.exports = {
     handleCreateData,
-    handleDeleteData,
+    handleGetData,
 }
