@@ -26,7 +26,18 @@ async function handleGetData(req, res) {
     }
 }
 
+async function handleDeleteData(req, res){
+    try {
+        const id = req.params.id;
+        const getData = await UserData.findByIdAndDelete(id)
+        return res.json({success: true, message: "Data Deleted Successfully", deleteData: getData})
+    } catch (err) {
+        return res.json({success: false, messagee: "Error Deleting Data", error: err.message()})
+    }
+}
+
 module.exports = {
     handleCreateData,
     handleGetData,
+    handleDeleteData,
 }
