@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from 'axios'
+import { svgs } from "../assets/asserts";
 
 const Create = () => {
     const [website, setWebsite] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [toggleEye, setToggleEye] = useState(true)
 
     async function handleCreateData(e){
         e.preventDefault()
@@ -25,17 +27,20 @@ const Create = () => {
         <div>
           <label htmlFor="">Enter Website URL: </label>
           <br />
-          <input onChange={(e)=> setWebsite(e.target.value)} className="bg-transparent px-3 py-2 border w-full my-2" type="text" placeholder="http://www.example.com" />
+          <input onChange={(e)=> setWebsite(e.target.value)} className="bg-transparent px-3 py-2 border w-full my-2" type="text" placeholder="http://www.example.com" required/>
         </div>
         <div>
             <label htmlFor="">Enter Username/Email: </label>
             <br />
-            <input onChange={(e)=> setUsername(e.target.value)} type="text" className="bg-transparent px-3 py-2 border w-full my-2" placeholder="abc@xyz.com"/>
+            <input onChange={(e)=> setUsername(e.target.value)} type="text" className="bg-transparent px-3 py-2 border w-full my-2" placeholder="abc@xyz.com" required/>
         </div>
         <div>
             <label htmlFor="">Enter Password: </label>
             <br />
-            <input onChange={(e) => setPassword(e.target.value)} type="text" className="bg-transparent px-3 py-2 border w-full my-2" placeholder="**********"/>
+            <div className="flex relative">
+            <input onChange={(e) => setPassword(e.target.value)} type={toggleEye?"password":"text"} className="bg-transparent px-3 py-2 border w-full my-2" placeholder="**********"/>
+            <img src={toggleEye?svgs.eye_open:svgs.eye_close} alt="togglePasswordView" className="w-5 invert absolute left-[270px] top-[18px] cursor-pointer" onClick={()=>setToggleEye(!toggleEye)} required/>
+            </div>
         </div>
         <div>
             <button type="submit" className="w-full bg-white text-black border rounded-sm py-2 my-2 transition-all hover:bg-black hover:text-white hover:scale-[1.025]">Add</button>
