@@ -5,6 +5,10 @@ const userDataSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    url: {
+        type: String,
+        required: true,
+    },
     username: {
         type: String,
         required: true,

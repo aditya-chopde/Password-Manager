@@ -4,6 +4,7 @@ import { svgs } from "../assets/asserts";
 
 const Create = () => {
     const [website, setWebsite] = useState("")
+    const [url, setUrl] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [toggleEye, setToggleEye] = useState(true)
@@ -13,12 +14,15 @@ const Create = () => {
         e.preventDefault()
         const formData = {
             website,
+            url,
             username,
             password
         }
 
-        const request = await axios.post("http://localhost:8080/user/create", formData);
-        console.log(request)
+        await axios.post("http://localhost:8080/user/create", formData).then((res)=>{
+          setToggleEnterData(true)
+          console.log(res)  
+        });
     }
 
   return (
@@ -28,15 +32,20 @@ const Create = () => {
         <button className="bg-white text-black px-8 rounded-sm py-2 cursor-pointer transition-all hover:bg-black hover:text-white border hover:scale-[1.025]" onClick={(() => setToggleEnterData(!toggleEnterData))}>Add Data</button>
       </div>
 
-      <form className={`border rounded-md px-10 py-8 my-24 w-96 absolute top-[25px] ${toggleEnterData&&"hidden"}`} onSubmit={handleCreateData}>
+      <form className={`border bg-black rounded-md px-10 py-8 my-24 w-96 absolute top-[25px] ${toggleEnterData&&"hidden"}`} onSubmit={handleCreateData}>
 
           <img src={svgs.cross} alt="cross-icon-svg" className="w-5 invert absolute right-[15px] top-[15px] transition-all hover:scale-105 cursor-pointer" onClick={(()=>setToggleEnterData(!toggleEnterData))}/>
           <h1 className="font-bold text-center text-3xl mb-5">Enter Data</h1>
 
         <div className="my-2">
+          <label htmlFor="">Enter Platform: </label>
+          <br />
+          <input onChange={(e)=> setUrl(e.target.value)} className="bg-transparent px-3 py-2 border w-full my-2" type="text" placeholder="Googel, Youtube" required/>
+        </div>
+        <div className="my-2">
           <label htmlFor="">Enter Website URL: </label>
           <br />
-          <input onChange={(e)=> setWebsite(e.target.value)} className="bg-transparent px-3 py-2 border w-full my-2" type="text" placeholder="http://www.example.com" required/>
+          <input onChange={(e)=> setWebsite(e.target.value)} className="bg-transparent px-3 py-2 border w-full my-2" type="text" placeholder="https://ww.example.com" required/>
         </div>
         <div className="my-2">
             <label htmlFor="">Enter Username/Email: </label>

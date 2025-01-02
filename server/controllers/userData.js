@@ -1,15 +1,13 @@
-const bcrypt = require("bcrypt")
 const UserData = require("../models/userData")
 
 async function handleCreateData(req, res) {
     try {
-        const { website, username, password } = req.body;
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds)
+        const { website, url, username, password } = req.body;
         const create = await UserData.create({
             website,
+            url,
             username,
-            password: hashedPassword,
+            password,
         })
         return res.json({ success: true, message: "Data Created", data: create });
     } catch (err) {
