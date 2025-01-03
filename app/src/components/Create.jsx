@@ -40,7 +40,7 @@ const Create = () => {
         <div className="my-2">
           <label htmlFor="">Enter Platform: </label>
           <br />
-          <input onChange={(e)=> setUrl(e.target.value)} className="bg-transparent px-3 py-2 border w-full my-2" type="text" placeholder="Googel, Youtube" required/>
+          <input onChange={(e)=> setUrl(e.target.value)} className="bg-transparent px-3 py-2 border w-full my-2" type="text" placeholder="Google, Youtube" required/>
         </div>
         <div className="my-2">
           <label htmlFor="">Enter Website URL: </label>

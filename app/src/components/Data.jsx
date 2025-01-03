@@ -20,7 +20,7 @@ const Data = () => {
       .then(() => {
         getDate();
       });
-  } 
+  }
 
   useEffect(() => {
     getDate();
@@ -28,48 +28,36 @@ const Data = () => {
 
   return (
     <>
-      <section className="flex flex-col justify-center items-center my-10">
-        <div className="flex flex-col justify-center w-[60%]">
-          <h1 className="font-bold text-2xl my-5">Your data</h1>
-          <table>
-            <thead>
-              <tr className="border text-center">
-                <th>#</th>
-                <th>Platform</th>
-                <th>URL</th>
-                <th>Username/Email</th>
-                <th>Password</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {isEmpty ? (
-                <tr>
-                  <td colSpan="6" className="text-center py-3">
-                    No Data
-                  </td>
-                </tr>
-              ) : (
-                data.map((item, index) => (
-                  <tr key={item._id} className="border">
-                    <td className="px-3 py-2">{index + 1}</td>
-                    <td className="px-3 pt-2">{item.url}</td>
-                    <td className="px-3 pt-2">{item.website}</td>
-                    <td className="px-3 pt-2">{item.username}</td>
-                    <td className="px-3 pt-2">{item.password}</td>
-                    <td>
-                      <img
-                        src={svgs.delete_icon}
-                        alt="delete_icon"
-                        className="w-5 transition-all hover:scale-105 invert cursor-pointer"
-                        onClick={() => handleDelete(item._id)}
-                      />
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+      <section className="mx-5">
+        <div>
+          <h1 className="text-lg">Recently Added</h1>
+          {isEmpty ? (
+            <div>
+              <p>No Data</p>
+            </div>
+          ) : (
+            data.map((item) => (
+              <div key={item._id} className="rounded-lg bg-[#262525] w-[100%] px-5 py-3 flex justify-between my-3 transition-all hover:bg-black hover:border hover:cursor-pointer">
+                <div>
+                  <h1 className="font-bold text-xl">{item.url}</h1>
+                  <p>{item.username}</p>
+                </div>
+                <div className="flex gap-3 items-end">
+                  <div className="bg-white rounded-[100%]">
+                    <img src={svgs.edit} alt="edit-icon" className="w-8 p-1" />
+                  </div>
+                  <div className="bg-white rounded-[100%]">
+                    <img
+                      src={svgs.delete_icon}
+                      alt="edit-icon"
+                      className="w-8 p-1"
+                      onClick={()=> handleDelete(item._id)}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </section>
     </>
