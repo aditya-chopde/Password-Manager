@@ -1,13 +1,15 @@
-import Create from '../components/Create'
-import DataParent from '../components/DataParent'
+import Navbar from "../assets/Navbar";
+import Create from "../components/Create";
+import DataParent from "../components/DataParent";
 
 const Home = () => {
   return (
     <>
-      <Create/>
-      <DataParent/>
+      <Navbar />
+      <Create />
+      <DataParent />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

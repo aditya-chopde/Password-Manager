@@ -30,12 +30,12 @@ const Create = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center relative">
-        <div className="my-10 absolute top-[48rem] right-8">
+        <div className="my-10 absolute top-[40rem] right-8 z-10">
           <button
             className="bg-white text-black rounded-[100%] p-3 cursor-pointer transition-all hover:bg-black hover:text-white border hover:scale-[1.025]"
             onClick={() => setToggleEnterData(!toggleEnterData)}
           >
-            <img src={svgs.plus} alt="plus-icon" className="w-8"/>
+            <img src={svgs.plus} alt="plus-icon" className="w-8 hover:invert"/>
           </button>
         </div>
 
@@ -58,7 +58,7 @@ const Create = () => {
             <br />
             <input
               onChange={(e) => setUrl(e.target.value)}
-              className="bg-transparent px-3 py-2 border w-full my-2"
+              className="bg-transparent px-3 py-2 outline-none border w-full my-2"
               type="text"
               placeholder="Google, Youtube"
               required
@@ -69,7 +69,7 @@ const Create = () => {
             <br />
             <input
               onChange={(e) => setWebsite(e.target.value)}
-              className="bg-transparent px-3 py-2 border w-full my-2"
+              className="bg-transparent px-3 py-2 outline-none border w-full my-2"
               type="text"
               placeholder="https://ww.example.com"
               required
@@ -81,7 +81,7 @@ const Create = () => {
             <input
               onChange={(e) => setUsername(e.target.value)}
               type="text"
-              className="bg-transparent px-3 py-2 border w-full my-2"
+              className="bg-transparent px-3 py-2 outline-none border w-full my-2"
               placeholder="abc@xyz.com"
               required
             />
@@ -93,7 +93,7 @@ const Create = () => {
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 type={toggleEye ? "password" : "text"}
-                className="bg-transparent px-3 py-2 border w-full my-2"
+                className="bg-transparent px-3 py-2 outline-none border w-full my-2"
                 placeholder="**********"
               />
               <img

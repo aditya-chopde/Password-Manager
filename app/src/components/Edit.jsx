@@ -44,7 +44,7 @@ const Edit = ({ closeEdit, id, editData, getData}) => {
             <input
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              className="bg-transparent px-3 py-2 border w-full my-2"
+              className="bg-transparent px-3 outline-none py-2 border w-full my-2"
               type="text"
               placeholder="Google, Youtube"
               required
@@ -57,7 +57,7 @@ const Edit = ({ closeEdit, id, editData, getData}) => {
             <input
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
-              className="bg-transparent px-3 py-2 border w-full my-2"
+              className="bg-transparent px-3 outline-none py-2 border w-full my-2"
               type="text"
               placeholder="https://www.example.com"
               required
@@ -71,7 +71,7 @@ const Edit = ({ closeEdit, id, editData, getData}) => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               type="text"
-              className="bg-transparent px-3 py-2 border w-full my-2"
+              className="bg-transparent px-3 outline-none py-2 border w-full my-2"
               placeholder="abc@xyz.com"
               required
             />
@@ -85,7 +85,7 @@ const Edit = ({ closeEdit, id, editData, getData}) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type={toggleEye ? "password" : "text"}
-                className="bg-transparent px-3 py-2 border w-full my-2"
+                className="bg-transparent px-3 outline-none py-2 border w-full my-2"
                 placeholder="**********"
               />
               <img

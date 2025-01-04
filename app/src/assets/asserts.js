@@ -5,6 +5,8 @@ import delete_icon from "./delete.svg";
 import google from "./google.svg"
 import edit from "./edit.svg"
 import plus from "./plus.svg"
+import logo from "./logo.png"
+import user from "./user.svg"
 
 export const svgs = {
     eye_close,
@@ -13,5 +15,10 @@ export const svgs = {
     delete_icon,
     google,
     edit,
-    plus
+    plus,
+    user,
+}
+
+export const images = {
+    logo,
 }
