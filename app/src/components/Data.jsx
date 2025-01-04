@@ -3,9 +3,11 @@ import { svgs } from "../assets/asserts";
 import { useState } from "react";
 import Edit from "./Edit";
 import axios from "axios";
+import SingleData from "./SingleData";
 
 const Data = ({ data, handleDelete, getData }) => {
   const [toggleEditData, setToggleEditData] = useState(true);
+  const [toggleDisplayData, setToggleDisplayData] = useState(true);
   const [editData, setEditData] = useState({});
   const [id, setId] = useState("");
   const isEmpty = data.length === 0;
@@ -19,8 +21,16 @@ const Data = ({ data, handleDelete, getData }) => {
       });
   }
 
-  async function openEdit(){
-    setToggleEditData(false)
+  async function openDisplayData() {
+    setToggleDisplayData(false);
+  }
+
+  async function closeDisplayData() {
+    setToggleDisplayData(true);
+  }
+
+  async function openEdit() {
+    setToggleEditData(false);
   }
 
   async function closeEdit() {
@@ -42,7 +52,10 @@ const Data = ({ data, handleDelete, getData }) => {
                 key={item._id}
                 className="rounded-lg bg-[#262525] w-[100%] px-5 py-3 flex justify-between my-3 transition-all hover:bg-black hover:border hover:cursor-pointer relative"
               >
-                <div>
+                <div onClick={()=> {
+                  getSingleData(item._id)
+                  openDisplayData()
+                  }}>
                   <h1 className="font-bold text-xl">{item.url}</h1>
                   <p>{item.username}</p>
                 </div>
@@ -50,8 +63,8 @@ const Data = ({ data, handleDelete, getData }) => {
                   <div
                     onClick={() => {
                       setId(item._id);
-                      openEdit()
-                      getSingleData(item._id)
+                      openEdit();
+                      getSingleData(item._id);
                     }}
                   >
                     <button className="bg-white rounded-[100%]">
@@ -76,12 +89,27 @@ const Data = ({ data, handleDelete, getData }) => {
           )}
         </div>
 
+        {/* Edit Modal  */}
         <div
           className={`border bg-black rounded-md px-8 py-8 my-24 w-96 absolute left-[-5px] top-0 z-10 ${
             toggleEditData && "hidden"
           }`}
         >
-          <Edit closeEdit={closeEdit} id={id} editData={editData} getData={getData}/>
+          <Edit
+            closeEdit={closeEdit}
+            id={id}
+            editData={editData}
+            getData={getData}
+          />
+        </div>
+
+        {/* Display data Modal  */}
+        <div
+          className={`border bg-black rounded-md px-8 py-8 my-24 w-96 absolute left-[-5px] top-0 z-10 ${
+            toggleDisplayData && "hidden"
+          }`}
+        >
+          <SingleData closeDisplayData={closeDisplayData} editData={editData} />
         </div>
       </section>
     </>
