@@ -7,6 +7,7 @@ import edit from "./edit.svg"
 import plus from "./plus.svg"
 import logo from "./logo.png"
 import user from "./user.svg"
+import logout from "./logout.svg"
 
 export const svgs = {
     eye_close,
@@ -17,6 +18,7 @@ export const svgs = {
     edit,
     plus,
     user,
+    logout,
 }
 
 export const images = {
