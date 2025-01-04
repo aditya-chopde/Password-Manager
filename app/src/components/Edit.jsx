@@ -1,62 +1,48 @@
-import { useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { svgs } from "../assets/asserts";
+import PropTypes from "prop-types";
+import axios from "axios";
 
-const Create = () => {
+const Edit = ({ closeEdit, id, editData, getData}) => {
   const [website, setWebsite] = useState("");
   const [url, setUrl] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [toggleEye, setToggleEye] = useState(true);
-  const [toggleEnterData, setToggleEnterData] = useState(true);
 
-  async function handleCreateData(e) {
-    e.preventDefault();
-    const formData = {
-      website,
-      url,
-      username,
-      password,
-    };
-
-    await axios
-      .post("http://localhost:8080/user/create", formData)
-      .then((res) => {
-        setToggleEnterData(true);
-        console.log(res);
+  async function handleEditData(e) {
+    e.preventDefault(); 
+    const formData = { url, website, username, password };
+      await axios.post(`http://localhost:8080/user/edit/${id}`, formData).then(()=>{
+        closeEdit(); 
+        getData();
       });
   }
 
+  useEffect(() => {
+    setWebsite(editData.website)
+    setUsername(editData.username)
+    setUrl(editData.url)
+    setPassword(editData.password)
+  }, [editData.website, editData.username, editData.url, editData.password])
+
   return (
     <>
-      <div className="flex flex-col justify-center items-center relative">
-        <div className="my-10">
-          <button
-            className="bg-white text-black px-8 rounded-sm py-2 cursor-pointer transition-all hover:bg-black hover:text-white border hover:scale-[1.025]"
-            onClick={() => setToggleEnterData(!toggleEnterData)}
-          >
-            Add Data
-          </button>
-        </div>
-
-        <form
-          className={`border bg-black rounded-md px-8 py-8 my-24 w-96 absolute top-[25px] z-10 ${
-            toggleEnterData && "hidden"
-          }`}
-          onSubmit={handleCreateData}
-        >
+      <div>
+        <form onSubmit={handleEditData}>
           <img
             src={svgs.cross}
             alt="cross-icon-svg"
             className="w-5 invert absolute right-[15px] top-[15px] transition-all hover:scale-105 cursor-pointer"
-            onClick={() => setToggleEnterData(!toggleEnterData)}
+            onClick={() => closeEdit()}
           />
           <h1 className="font-bold text-center text-3xl mb-5">Enter Data</h1>
 
           <div className="my-2">
-            <label htmlFor="">Enter Platform: </label>
+            <label htmlFor="url">Enter Platform: </label>
             <br />
             <input
+              value={url}
               onChange={(e) => setUrl(e.target.value)}
               className="bg-transparent px-3 py-2 border w-full my-2"
               type="text"
@@ -64,21 +50,25 @@ const Create = () => {
               required
             />
           </div>
+
           <div className="my-2">
-            <label htmlFor="">Enter Website URL: </label>
+            <label htmlFor="website">Enter Website URL: </label>
             <br />
             <input
+              value={website}
               onChange={(e) => setWebsite(e.target.value)}
               className="bg-transparent px-3 py-2 border w-full my-2"
               type="text"
-              placeholder="https://ww.example.com"
+              placeholder="https://www.example.com"
               required
             />
           </div>
+
           <div className="my-2">
-            <label htmlFor="">Enter Username/Email: </label>
+            <label htmlFor="username">Enter Username/Email: </label>
             <br />
             <input
+              value={username}
               onChange={(e) => setUsername(e.target.value)}
               type="text"
               className="bg-transparent px-3 py-2 border w-full my-2"
@@ -86,11 +76,13 @@ const Create = () => {
               required
             />
           </div>
+
           <div className="my-2">
-            <label htmlFor="">Enter Password: </label>
+            <label htmlFor="password">Enter Password: </label>
             <br />
             <div className="flex relative">
               <input
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type={toggleEye ? "password" : "text"}
                 className="bg-transparent px-3 py-2 border w-full my-2"
@@ -101,16 +93,16 @@ const Create = () => {
                 alt="togglePasswordView"
                 className="w-5 invert absolute left-[270px] top-[18px] cursor-pointer"
                 onClick={() => setToggleEye(!toggleEye)}
-                required
               />
             </div>
           </div>
+
           <div>
             <button
               type="submit"
               className="w-full bg-white text-black border rounded-sm py-2 my-2 transition-all hover:bg-black hover:text-white hover:scale-[1.025]"
             >
-              Add
+              Save
             </button>
           </div>
         </form>
@@ -119,4 +111,18 @@ const Create = () => {
   );
 };
 
-export default Create;
+Edit.propTypes = {
+  closeEdit: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  editData: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    website: PropTypes.string,
+    url: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string,
+  }).isRequired,
+  getData: PropTypes.func.isRequired,
+  
+};
+
+export default Edit;

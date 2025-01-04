@@ -20,17 +20,38 @@ async function handleGetData(req, res) {
         const data = await UserData.find();
         return res.json({ success: true, message: "Data Fetched Successfull", data });
     } catch (err) {
-        return res.json({success: false, message: "Error Fetching Data", error: err.message})
+        return res.json({ success: false, message: "Error Fetching Data", error: err.message })
     }
 }
 
-async function handleDeleteData(req, res){
+async function handleDeleteData(req, res) {
     try {
         const id = req.params.id;
         const getData = await UserData.findByIdAndDelete(id)
-        return res.json({success: true, message: "Data Deleted Successfully", deleteData: getData})
+        return res.json({ success: true, message: "Data Deleted Successfully", deleteData: getData })
     } catch (err) {
-        return res.json({success: false, messagee: "Error Deleting Data", error: err.message()})
+        return res.json({ success: false, messagee: "Error Deleting Data", error: err.message() })
+    }
+}
+
+async function getSingleData(req, res) {
+    try {
+        const { id } = req.params;
+        const getSingleData = await UserData.findOne({ _id: id })
+        return res.json({ success: true, getSingleData })
+    } catch (err) {
+        return res.json({ success: false, message: "Error Getting Data" })
+    }
+}
+
+async function handleEditPost(req, res) {
+    try {
+        const { id } = req.params;
+        const { website, url, username, password } = req.body;
+        const editedData = await UserData.findByIdAndUpdate({ _id: id }, { website, url, username, password })
+        return res.json({success: true, message: "Data Edited Successfully", editedData});
+    } catch (err) {
+        return res.json({success: false, message: "Error Updating the Data", error: err.message})
     }
 }
 
@@ -38,4 +59,6 @@ module.exports = {
     handleCreateData,
     handleGetData,
     handleDeleteData,
+    getSingleData,
+    handleEditPost,
 }
