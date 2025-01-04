@@ -30,12 +30,12 @@ const Create = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center relative">
-        <div className="my-10">
+        <div className="my-10 absolute top-[48rem] right-8">
           <button
-            className="bg-white text-black px-8 rounded-sm py-2 cursor-pointer transition-all hover:bg-black hover:text-white border hover:scale-[1.025]"
+            className="bg-white text-black rounded-[100%] p-3 cursor-pointer transition-all hover:bg-black hover:text-white border hover:scale-[1.025]"
             onClick={() => setToggleEnterData(!toggleEnterData)}
           >
-            Add Data
+            <img src={svgs.plus} alt="plus-icon" className="w-8"/>
           </button>
         </div>
 

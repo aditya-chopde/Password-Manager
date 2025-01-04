@@ -4,6 +4,7 @@ import cross from "./cross.svg"
 import delete_icon from "./delete.svg";
 import google from "./google.svg"
 import edit from "./edit.svg"
+import plus from "./plus.svg"
 
 export const svgs = {
     eye_close,
@@ -11,5 +12,6 @@ export const svgs = {
     cross,
     delete_icon,
     google,
-    edit
+    edit,
+    plus
 }
