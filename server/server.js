@@ -3,8 +3,10 @@ const app =  express()
 const cors = require("cors")
 const bodyParser = require("body-parser");
 const { connectDB } = require("./connect");
-const user = require("./routes/user")
+const user = require("./routes/user");
+const { config } = require("dotenv");
 const PORT = 8080;
+require("dotenv").config()
 
 app.use(cors())
 app.use(bodyParser.json())
