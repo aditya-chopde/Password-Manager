@@ -9,7 +9,7 @@ const DataParent = () => {
   const userId = localStorage.getItem("userId")
 
   async function getData() {
-    axios.get(`${url_backend}user/data`, {userId}).then((res) => {
+    axios.get(`${url_backend}user/data/${userId}`).then((res) => {
       let data = res.data.data;
       setData(data);
     });

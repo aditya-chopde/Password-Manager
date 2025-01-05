@@ -18,7 +18,7 @@ async function handleCreateData(req, res) {
 
 async function handleGetData(req, res) {
     try {
-        const {userId} = req.body;
+        const {userId} = req.params;
         const data = await UserData.find({userId});
         return res.json({ success: true, message: "Data Fetched Successfull", data });
     } catch (err) {

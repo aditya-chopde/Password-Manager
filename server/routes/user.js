@@ -5,7 +5,7 @@ const router = express()
 
 // Routes related to data
 router.post("/create", handleCreateData);
-router.get("/data", handleGetData);
+router.get("/data/:id", handleGetData);
 router.post("/delete-data/:id", handleDeleteData);
 router.post("/edit/:id", handleEditPost);
 router.get('/single-data/:id', getSingleData);
