@@ -6,9 +6,10 @@ import { AppContext } from "../context/AppContext";
 const DataParent = () => {
   const [data, setData] = useState([]);
   const {url_backend} = useContext(AppContext)
+  const userId = localStorage.getItem("userId")
 
   async function getData() {
-    axios.get(`${url_backend}user/data`).then((res) => {
+    axios.get(`${url_backend}user/data`, {userId}).then((res) => {
       let data = res.data.data;
       setData(data);
     });

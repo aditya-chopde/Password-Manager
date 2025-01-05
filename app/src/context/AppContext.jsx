@@ -3,7 +3,7 @@ import { createContext } from "react";
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const url_backend = "https://password-manager-backend-8mfv.onrender.com/";
+  const url_backend = "http://localhost:8080/";
 
   const contextValue = {
     url_backend,

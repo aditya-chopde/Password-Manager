@@ -10,6 +10,7 @@ const Create = () => {
   const [password, setPassword] = useState("");
   const [toggleEye, setToggleEye] = useState(true);
   const [toggleEnterData, setToggleEnterData] = useState(true);
+  const userId = localStorage.getItem("userId")
   const {url_backend} = useContext(AppContext)
 
   async function handleCreateData(e) {
@@ -19,6 +20,7 @@ const Create = () => {
       url,
       username,
       password,
+      userId
     };
 
     await axios
