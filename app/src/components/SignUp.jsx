@@ -20,8 +20,8 @@ const SignUp = () => {
 
     await axios.post(`${url_backend}user/signup`, formData).then((res)=>{
       if(res.data.success){
-        localStorage.setItem("token", JSON.stringify(res.data.token));
-        localStorage.setItem("userId", JSON.stringify(res.data.createUser._id))
+        localStorage.setItem("token", res.data.token)
+        localStorage.setItem("userId", res.data.createUser._id)
         navigate("/dashboard")
       }else{
         alert(res.data.message)
