@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { svgs } from "../assets/asserts";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Edit from "./Edit";
 import axios from "axios";
 import SingleData from "./SingleData";
+import {AppContext} from "../context/AppContext"
 
 const Data = ({ data, handleDelete, getData }) => {
   const [toggleEditData, setToggleEditData] = useState(true);
@@ -12,9 +13,11 @@ const Data = ({ data, handleDelete, getData }) => {
   const [id, setId] = useState("");
   const isEmpty = data.length === 0;
 
+  const {url_backend} = useContext(AppContext) 
+
   async function getSingleData(id) {
     await axios
-      .get(`http://localhost:8080/user/single-data/${id}`)
+      .get(`${url_backend}user/single-data/${id}`)
       .then((res) => {
         let EditData = res.data.getSingleData;
         setEditData(EditData);

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { svgs } from "../assets/asserts";
+import { AppContext } from "../context/AppContext";
 
 const Create = () => {
   const [website, setWebsite] = useState("");
@@ -9,6 +10,7 @@ const Create = () => {
   const [password, setPassword] = useState("");
   const [toggleEye, setToggleEye] = useState(true);
   const [toggleEnterData, setToggleEnterData] = useState(true);
+  const {url_backend} = useContext(AppContext)
 
   async function handleCreateData(e) {
     e.preventDefault();
@@ -20,7 +22,7 @@ const Create = () => {
     };
 
     await axios
-      .post("http://localhost:8080/user/create", formData)
+      .post(`${url_backend}user/create`, formData)
       .then((res) => {
         setToggleEnterData(true);
         console.log(res);

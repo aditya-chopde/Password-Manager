@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import axios from "axios"
 import {svgs} from "../assets/asserts"
 import { useNavigate } from "react-router-dom"
+import { AppContext } from "../context/AppContext"
 
 const SignUp = () => {
   const [name, setName] = useState("")
@@ -9,6 +10,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("")
   const [toggleEye, setToggleEye] = useState(true)
   const navigate = useNavigate()
+  const {url_backend} = useContext(AppContext)
 
   async function handleCreateUser(e){
     e.preventDefault()
@@ -16,7 +18,7 @@ const SignUp = () => {
       name, email, password
     }
 
-    await axios.post("http://localhost:8080/user/signup", formData).then((res)=>{
+    await axios.post(`${url_backend}user/signup`, formData).then((res)=>{
       if(res.data.success){
         localStorage.setItem("token", JSON.stringify(res.data.token));
         localStorage.setItem("userId", JSON.stringify(res.data.createUser._id))

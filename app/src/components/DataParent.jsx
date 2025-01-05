@@ -1,13 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Data from "./Data";
+import { AppContext } from "../context/AppContext";
 
 const DataParent = () => {
   const [data, setData] = useState([]);
-  const url = "http://localhost:8080/";
+  const {url_backend} = useContext(AppContext)
 
   async function getData() {
-    axios.get(`${url}user/data`).then((res) => {
+    axios.get(`${url_backend}user/data`).then((res) => {
       let data = res.data.data;
       setData(data);
     });
@@ -15,7 +16,7 @@ const DataParent = () => {
 
   async function handleDelete(id) {
     await axios
-      .post(`http://localhost:8080/user/delete-data/${id}`)
+      .post(`${url_backend}user/delete-data/${id}`)
       .then(() => {
         getData();
       });

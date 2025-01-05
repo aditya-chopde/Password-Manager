@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { svgs } from "../assets/asserts";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { AppContext } from "../context/AppContext";
 
 const Edit = ({ closeEdit, id, editData, getData}) => {
   const [website, setWebsite] = useState("");
@@ -9,11 +10,12 @@ const Edit = ({ closeEdit, id, editData, getData}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [toggleEye, setToggleEye] = useState(true);
+  const {url_backend} = useContext(AppContext)
 
   async function handleEditData(e) {
     e.preventDefault(); 
     const formData = { url, website, username, password };
-      await axios.post(`http://localhost:8080/user/edit/${id}`, formData).then(()=>{
+      await axios.post(`${url_backend}user/edit/${id}`, formData).then(()=>{
         closeEdit(); 
         getData();
       });
