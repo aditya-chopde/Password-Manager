@@ -18,8 +18,8 @@ const Login = () => {
       const res = await axios.post(`${url_backend}user/login`, formData);
 
       if (res.data.success) {
-        localStorage.setItem("token", JSON.stringify(res.data.token));
-        localStorage.setItem("userId", JSON.stringify(res.data.getUser._id));
+        localStorage.setItem("token",res.data.token);
+        localStorage.setItem("userId", res.data.getUser._id);
 
         navigate("/dashboard");
       } else {
