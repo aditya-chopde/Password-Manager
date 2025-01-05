@@ -8,6 +8,8 @@ import plus from "./plus.svg"
 import logo from "./logo.png"
 import user from "./user.svg"
 import logout from "./logout.svg"
+import hero_image from "./hero_image.png"
+import footer_logo from "./footer_logo.png"
 
 export const svgs = {
     eye_close,
@@ -23,4 +25,6 @@ export const svgs = {
 
 export const images = {
     logo,
+    hero_image,
+    footer_logo,
 }

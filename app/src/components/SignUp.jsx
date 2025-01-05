@@ -28,10 +28,10 @@ const SignUp = () => {
   } 
   return (
     <>
-      <div className="flex flex-col justify-center items-center relative">
+      <div className="flex flex-col justify-center items-center h-[75vh]">
         <form
         onSubmit={handleCreateUser}
-          className={`border bg-black rounded-md px-8 py-8 my-24 w-96 absolute top-[25px] z-10`}
+          className={`border bg-black rounded-md px-8 py-8 my-24 w-96 top-[25px] z-10`}
         >
           <h1 className="font-bold text-center text-3xl mb-5">Create Account</h1>
 

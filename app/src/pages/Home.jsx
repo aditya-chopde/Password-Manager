@@ -9,7 +9,7 @@ const Home = () => {
   async function isLoggedIn(){
     let checkToken = localStorage.getItem("token")
     if(!checkToken){
-      navigate("/dashboard")
+      navigate("/")
     }
   }
   
