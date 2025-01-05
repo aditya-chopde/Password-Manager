@@ -1,10 +1,11 @@
-import React from 'react'
 
 const Index = () => {
   return (
-    <div className='flex justify-center items-center'>
-      This is Home
+    <>
+    <div className="text-center">
+     <h1>PassPod - Password Manager</h1> 
     </div>
+    </>
   )
 }
 

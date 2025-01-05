@@ -23,9 +23,9 @@ const DataParent = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
-  return <Data data={data} handleDelete={handleDelete} getData={getData}/>;
+  return <Data data={data} handleDelete={handleDelete} getData={getData} />;
 };
 
 export default DataParent;

@@ -1,12 +1,14 @@
 import { useState } from "react"
 import axios from "axios"
 import {svgs} from "../assets/asserts"
+import { useNavigate } from "react-router-dom"
 
 const SignUp = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [toggleEye, setToggleEye] = useState(true)
+  const navigate = useNavigate()
 
   async function handleCreateUser(e){
     e.preventDefault()
@@ -16,8 +18,9 @@ const SignUp = () => {
 
     await axios.post("http://localhost:8080/user/signup", formData).then((res)=>{
       if(res.data.success){
-        const token = localStorage.setItem("token", res.data.token);
-        const user_id = localStorage.setItem("userId", res.data.createUser._id)
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        localStorage.setItem("userId", JSON.stringify(res.data.createUser._id))
+        navigate("/dashboard")
       }else{
         alert(res.data.message)
       }
