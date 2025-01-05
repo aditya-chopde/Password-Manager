@@ -16,6 +16,10 @@ const userDataSchema = new mongoose.Schema({
     password: {
         type: String,
         reuqired: true,
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, 
+        require: true,
     }
 }, {
     timestamps: true

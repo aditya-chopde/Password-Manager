@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: false}))
 app.use("/user", user)
 
 // DB Connection 
-connectDB(process.env.MONGO_URL).then(()=>{
+connectDB("mongodb://localhost:27017/password-manager").then(()=>{
     console.log("Database Connected...")
 }).catch((err)=>{
     console.log("Error Occurred Connecting DataBase..." + err.message);

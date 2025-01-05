@@ -42,7 +42,7 @@ const Data = ({ data, handleDelete, getData }) => {
 
   return (
     <>
-      <section className="mx-5 relative">
+      <section className="mx-5 relative mb-10">
         <div>
           <h1 className="text-lg">Recently Added</h1>
           {isEmpty ? (

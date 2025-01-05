@@ -3,7 +3,7 @@ import { images } from "../assets/asserts";
 const Footer = () => {
   return (
     <>
-      <div className="flex flex-col justify-center items-center mx-10 border-t">
+      <div className="flex flex-col justify-end items-center mx-10 border-t">
         <div className="flex items-center gap-3 my-5">
           <img
             src={images.footer_logo}

@@ -2,12 +2,13 @@ const UserData = require("../models/userData")
 
 async function handleCreateData(req, res) {
     try {
-        const { website, url, username, password } = req.body;
+        const { website, url, username, password, userId} = req.body;
         const create = await UserData.create({
             website,
             url,
             username,
             password,
+            userId,
         })
         return res.json({ success: true, message: "Data Created", data: create });
     } catch (err) {
@@ -17,7 +18,8 @@ async function handleCreateData(req, res) {
 
 async function handleGetData(req, res) {
     try {
-        const data = await UserData.find();
+        const {userId} = req.body;
+        const data = await UserData.find({userId});
         return res.json({ success: true, message: "Data Fetched Successfull", data });
     } catch (err) {
         return res.json({ success: false, message: "Error Fetching Data", error: err.message })
