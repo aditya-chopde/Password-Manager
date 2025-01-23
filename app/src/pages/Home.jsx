@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Create from "../components/Create";
 import DataParent from "../components/DataParent";
+import { ToastContainer} from 'react-toastify';
 import { useEffect } from "react";
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
   
   return (
     <>
+    <ToastContainer position="bottom-right" theme="dark"/>
       <Create />
       <DataParent />
     </>

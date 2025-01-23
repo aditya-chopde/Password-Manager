@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { svgs } from "../assets/asserts";
 import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const Create = () => {
   const [website, setWebsite] = useState("");
@@ -28,6 +29,7 @@ const Create = () => {
     await axios
       .post(`${url_backend}user/create`, formData)
       .then((res) => {
+        toast.success("Data Created Successfully");
         setToggleEnterData(true);
         setIsCreated(false);
       });

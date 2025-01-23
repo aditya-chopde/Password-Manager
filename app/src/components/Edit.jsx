@@ -3,6 +3,7 @@ import { svgs } from "../assets/asserts";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const Edit = ({ closeEdit, id, editData, getData}) => {
   const [website, setWebsite] = useState("");
@@ -20,6 +21,7 @@ const Edit = ({ closeEdit, id, editData, getData}) => {
       await axios.post(`${url_backend}user/edit/${id}`, formData).then(()=>{
         closeEdit(); 
         getData();
+        toast.success("Data Edited Successfully");
         setIsEditing(false);
       });
   }

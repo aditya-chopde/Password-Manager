@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import Data from "./Data";
 import { AppContext } from "../context/AppContext";
+import { toast } from "react-toastify";
 
 const DataParent = () => {
   const [data, setData] = useState([]);
@@ -19,6 +20,7 @@ const DataParent = () => {
     await axios
       .post(`${url_backend}user/delete-data/${id}`)
       .then(() => {
+        toast.success("Data Deleted Successfully");
         getData();
       });
   }
