@@ -11,13 +11,16 @@ const Edit = ({ closeEdit, id, editData, getData}) => {
   const [password, setPassword] = useState("");
   const [toggleEye, setToggleEye] = useState(true);
   const {url_backend} = useContext(AppContext)
+  const [isEditing, setIsEditing] = useState(false);
 
   async function handleEditData(e) {
+    setIsEditing(true);
     e.preventDefault(); 
     const formData = { url, website, username, password };
       await axios.post(`${url_backend}user/edit/${id}`, formData).then(()=>{
         closeEdit(); 
         getData();
+        setIsEditing(false);
       });
   }
 
@@ -101,10 +104,11 @@ const Edit = ({ closeEdit, id, editData, getData}) => {
 
           <div>
             <button
+            disabled={isEditing}
               type="submit"
-              className="w-full bg-white text-black border rounded-sm py-2 my-2 transition-all hover:bg-black hover:text-white hover:scale-[1.025]"
+              className={`w-full bg-white text-black border rounded-sm py-2 my-2 transition-all ${isEditing ? "cursor-not-allowed" : "hover:bg-black hover:text-white hover:scale-[1.025]"}`}
             >
-              Save
+              {isEditing ? "Editing..." : "Edit"}
             </button>
           </div>
         </form>
