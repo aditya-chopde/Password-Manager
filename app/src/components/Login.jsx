@@ -88,7 +88,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLogging}
-              className={`w-full bg-white text-black border rounded-sm py-2 my-2 transition-all hover:bg-black hover:text-white hover:scale-[1.025] ${isLogging ? "cursor-not-allowed" : ""}`}
+              className={`w-full bg-white text-black border rounded-sm py-2 my-2 transition-all ${isLogging ? "cursor-not-allowed" : "hover:bg-black hover:text-white hover:scale-[1.025]"}`}
             >
               {isLogging ? "Logging in..." : "Login"}
             </button>
