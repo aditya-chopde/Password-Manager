@@ -108,7 +108,7 @@ const Data = ({ data, handleDelete, getData }) => {
 
         {/* Display data Modal  */}
         <div
-          className={`border bg-black rounded-md px-8 py-8 my-24 w-96 absolute sm:right-[20%] md:right-[35%] lg:right-[35%] top-0 z-10 ${
+          className={`border bg-black rounded-md px-8 py-8 my-24 w-80 lg:w-96 absolute right-[8%] sm:right-[20%] md:right-[35%] lg:right-[35%] top-0 z-10 ${
             toggleDisplayData && "hidden"
           }`}
         >
