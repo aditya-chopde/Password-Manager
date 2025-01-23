@@ -34,17 +34,17 @@ const Create = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center relative">
-        <div className="my-10 absolute top-[40rem] right-8 z-10">
+        <div className="fixed bottom-8 right-8 z-10 group lg:right-56">
           <button
             className="bg-white text-black rounded-[100%] p-3 cursor-pointer transition-all hover:bg-black hover:text-white border hover:scale-[1.025]"
             onClick={() => setToggleEnterData(!toggleEnterData)}
           >
-            <img src={svgs.plus} alt="plus-icon" className="w-8 hover:invert"/>
+            <img src={svgs.plus} alt="plus-icon" className="w-8 group-hover:invert"/>
           </button>
         </div>
 
         <form
-          className={`lg:right-0 border bg-black rounded-md px-8 py-8 my-24 w-96 absolute top-[25px] z-10 ${
+          className={`border bg-black rounded-md px-8 py-8 my-24 w-80 lg:w-96 absolute right-[8%] sm:right-[20%] md:right-[35%] lg:right-[35%] top-0 z-10 ${
             toggleEnterData && "hidden"
           }`}
           onSubmit={handleCreateData}
