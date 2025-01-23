@@ -12,8 +12,10 @@ const Create = () => {
   const [toggleEnterData, setToggleEnterData] = useState(true);
   const userId = localStorage.getItem("userId")
   const {url_backend} = useContext(AppContext)
+  const [isCreated, setIsCreated] = useState(false)
 
   async function handleCreateData(e) {
+    setIsCreated(true);
     e.preventDefault();
     const formData = {
       website,
@@ -27,7 +29,7 @@ const Create = () => {
       .post(`${url_backend}user/create`, formData)
       .then((res) => {
         setToggleEnterData(true);
-        console.log(res);
+        setIsCreated(false);
       });
   }
 
@@ -112,9 +114,10 @@ const Create = () => {
           <div>
             <button
               type="submit"
-              className="w-full bg-white text-black border rounded-sm py-2 my-2 transition-all hover:bg-black hover:text-white hover:scale-[1.025]"
+              disabled={isCreated}
+              className={`w-full bg-white text-black border rounded-sm py-2 my-2 transition-all ${isCreated ? "cursor-not-allowed" : "hover:bg-black hover:text-white hover:scale-[1.025]"}`}
             >
-              Add
+              {isCreated ? "Creating..." : "Create"}
             </button>
           </div>
         </form>
