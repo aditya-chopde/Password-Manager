@@ -11,8 +11,11 @@ const Login = () => {
   const navigate = useNavigate();
   const {url_backend} = useContext(AppContext)
 
+  const [isLogging, setIsLogging] = useState(false)
+
   async function handleCreateUser(e) {
     e.preventDefault(); 
+    setIsLogging(true);
     const formData = { email, password }; 
     try {
       const res = await axios.post(`${url_backend}user/login`, formData);
@@ -22,6 +25,7 @@ const Login = () => {
         localStorage.setItem("userId", res.data.getUser._id);
 
         navigate("/dashboard");
+        setIsLogging(false);
       } else {
         alert(res.data.message);
         console.log(res.data);
@@ -83,9 +87,10 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="w-full bg-white text-black border rounded-sm py-2 my-2 transition-all hover:bg-black hover:text-white hover:scale-[1.025]"
+              disabled={isLogging}
+              className={`w-full bg-white text-black border rounded-sm py-2 my-2 transition-all hover:bg-black hover:text-white hover:scale-[1.025] ${isLogging ? "cursor-not-allowed" : ""}`}
             >
-              Login
+              {isLogging ? "Logging in..." : "Login"}
             </button>
           </div>
         </form>

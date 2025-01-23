@@ -43,7 +43,7 @@ const Data = ({ data, handleDelete, getData }) => {
   return (
     <>
       <section className="mx-5 relative mb-10">
-        <div>
+        <div className="lg:w-1/2 w-full mx-auto">
           <h1 className="text-lg">Recently Added</h1>
           {isEmpty ? (
             <div>
