@@ -44,7 +44,7 @@ const Create = () => {
         </div>
 
         <form
-          className={`border bg-black rounded-md px-8 py-8 my-24 w-96 absolute top-[25px] z-10 ${
+          className={`lg:right-0 border bg-black rounded-md px-8 py-8 my-24 w-96 absolute top-[25px] z-10 ${
             toggleEnterData && "hidden"
           }`}
           onSubmit={handleCreateData}

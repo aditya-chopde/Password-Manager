@@ -25,7 +25,7 @@ const SingleData = ({ closeDisplayData, editData }) => {
           className="w-5 invert absolute right-[15px] top-[15px] transition-all hover:scale-105 cursor-pointer"
           onClick={() => closeDisplayData()}
         />
-        <h1 className="font-bold text-center text-3xl mb-5">Enter Data</h1>
+        <h1 className="font-bold text-center text-3xl mb-5">Details</h1>
 
         <div className="my-2">
           <label htmlFor="url">Enter Platform: </label>
