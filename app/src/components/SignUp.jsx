@@ -11,8 +11,10 @@ const SignUp = () => {
   const [toggleEye, setToggleEye] = useState(true)
   const navigate = useNavigate()
   const {url_backend} = useContext(AppContext)
+  const [isSignup, setIsSignup] = useState(false)
 
   async function handleCreateUser(e){
+    setIsSignup(true);
     e.preventDefault()
     const formData = {
       name, email, password
@@ -23,6 +25,7 @@ const SignUp = () => {
         localStorage.setItem("token", res.data.token)
         localStorage.setItem("userId", res.data.createUser._id)
         navigate("/dashboard")
+        setIsSignup(false);
       }else{
         alert(res.data.message)
       }
@@ -80,10 +83,11 @@ const SignUp = () => {
           </div>
           <div>
             <button
+            disabled={isSignup}
               type="submit"
-              className="w-full bg-white text-black border rounded-sm py-2 my-2 transition-all hover:bg-black hover:text-white hover:scale-[1.025]"
+              className={`w-full bg-white text-black border rounded-sm py-2 my-2 transition-all ${isSignup ? "cursor-not-allowed" : "hover:bg-black hover:text-white hover:scale-[1.025]"}`}
             >
-              Sign Up
+              {isSignup ? "Creating Account..." : "Create Account"}
             </button>
           </div>
         </form>
