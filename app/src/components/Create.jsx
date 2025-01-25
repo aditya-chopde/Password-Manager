@@ -107,7 +107,7 @@ const Create = () => {
               <img
                 src={toggleEye ? svgs.eye_open : svgs.eye_close}
                 alt="togglePasswordView"
-                className="w-5 invert absolute left-[270px] top-[18px] cursor-pointer"
+                className="w-5 invert absolute lg:left-[270px] left-[225px] top-[18px] cursor-pointer"
                 onClick={() => setToggleEye(!toggleEye)}
                 required
               />
